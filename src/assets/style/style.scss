@@ -1,6 +1,10 @@
 @use 'sizes';
-@use 'typography';
+// @use 'typography';
 
 body {
   background-color: azure;
 }
+
+// h1 {
+//   @include sizes.size(xl);
+// }
