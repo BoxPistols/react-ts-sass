@@ -1,0 +1,90 @@
+/**
+ * Common Size Params = Size Utilities / It will be used for font-size, icon-size, and other ui-objects.
+ * TODO: Unify codes and size patterns, reduce size types
+*/
+$size-list: (
+  xxs: 10,
+  xs: 11,
+  ss: 12,
+  sm: 14,
+  md: 16,
+  ml: 18,
+  mx: 20,
+  lg: 22,
+  xl: 24,
+  xl-1: 26,
+  xl-2: 28,
+  xl-3: 30,
+  xl-4: 32,
+  xl-5: 34,
+  xl-6: 36,
+  xl-7: 38,
+  xl-8: 40,
+  xl-9: 42,
+  xl-10: 44,
+) !default;
+
+/**
+ * map-get from $size-list / size($size=value:number)
+ * example: size(md) = 16px
+ */
+@function size($size) {
+  @return #{map-get($size-list, $size) + px};
+}
+// Check on Terminal ↓ Try closing the comment out temporarily
+// @debug size();
+
+/**
+ * @mixin for objects size(Icon etc.)
+*/
+@mixin size($size, $height: auto) {
+  @each $key, $value in $size-list {
+    @if $size==$key {
+      width: size($key); // width: $value on $key(example: md = 16)
+      @if ($height==$key) {
+        height: ($value) + px; // width:$value + height:$value
+      } @else if($height==auto) {
+        height: auto; // width:$value + height:auto
+      } @else if($height) {
+        height: ($height) + px; // height is set(number + px)
+      } @else {
+        height: auto; // default height = auto
+      }
+    }
+  }
+}
+
+// Add Class for HTML Utility
+@each $key, $value in $size-list {
+  .size_#{$key} {
+    // width=height / example: .size_md
+    @include size($key, $value);
+  }
+  .size_#{$key}-auto {
+    // width:$vakue + height:auto  / example: .size_md-auto
+    @include size($key, auto);
+  }
+  .size_w-#{$key} {
+    // width / example: .size_w-md
+    width: size($key);
+  }
+  .size_h-#{$key} {
+    // height / example: .size_h-md
+    height: size($key);
+  }
+}
+
+/**
+ * Example:
+ *
+ * --- for SCSS ---
+ * @include size(md); // width:16px, height:auto
+ * @include size(md, md); // width:16px, height:16px
+ * @include size(md, 12); // width:16px, height:12px
+ *
+ * --- for HTML(jsx) ---
+ * .size_md // width:16px, height:16px
+ * .size_md-auto // width:16px, height:auto
+ * .size_w-md // width:16px
+ * .size_h-md // height:16px
+ */

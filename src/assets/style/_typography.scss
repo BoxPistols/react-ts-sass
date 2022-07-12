@@ -1,0 +1,99 @@
+@use 'sizes';
+
+/**
+* TODO: Next Step / 2022-7-7 now ↓
+* Typography issue: don't use & remove Individual other than basic letter-spacing
+*/
+
+body {
+  // font-family: 'noto-sans-cjk-jp', sans-serif;
+  // for Chrome on Mac
+  -webkit-font-smoothing: antialiased;
+}
+
+/**
+ * @xxs = 10 / *12px or more is desirable
+ * @xs = 11 / *12px or more is desirable
+ * @ss = 12
+ * @sm = 14
+ * @md = 16
+ */
+
+// $size-list: from _sizes.scss
+@function fs($font-size) {
+  @return #{map-get(sizes.$size-list, $font-size) + px};
+}
+
+// Global Font Size Mixin for scss
+// Example: @include fs(xs); = 11px
+@mixin fs($size: 16) {
+  @if $size==xxs {
+    font-size: fs(xxs); // 10px
+  } @else if $size==xs {
+    font-size: fs(xs); // 11px
+  } @else if $size==ss {
+    font-size: fs(ss); // 12px
+  } @else if $size==sm {
+    font-size: fs(sm); // 14px
+  } @else {
+    font-size: fs(md); // 16px
+  }
+}
+
+// Global Font Size Mixin for html/jsx
+.fs-xxs {
+  // 10px
+  font-size: fs(xxs);
+  letter-spacing: 0.16px;
+}
+
+.fs-xs {
+  // 11px
+  font-size: fs(xs);
+  letter-spacing: 0.18px;
+}
+
+.fs-ss {
+  // 12px
+  font-size: fs(ss);
+  letter-spacing: 0.19px;
+}
+
+.fs-sm {
+  // 14px
+  font-size: fs(sm);
+  letter-spacing: 0.22px;
+}
+
+.fs-md {
+  // 16px
+  font-size: fs(md);
+}
+
+// global font-weight: bold = 600
+@mixin fw-bold($fw: 600) {
+  font-weight: $fw;
+}
+
+.cursor {
+  &--pointer {
+    cursor: pointer !important;
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.b-disabled {
+  opacity: 0.5;
+  cursor: unset !important;
+}
+
+// .cut-text {
+//   @include cut-text;
+// }
