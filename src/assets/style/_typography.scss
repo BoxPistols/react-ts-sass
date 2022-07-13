@@ -44,25 +44,25 @@ body {
 .fs-xxs {
   // 10px
   font-size: fs(xxs);
-  letter-spacing: 0.16px;
+  // letter-spacing: 0.16px;
 }
 
 .fs-xs {
   // 11px
   font-size: fs(xs);
-  letter-spacing: 0.18px;
+  // letter-spacing: 0.18px;
 }
 
 .fs-ss {
   // 12px
   font-size: fs(ss);
-  letter-spacing: 0.19px;
+  // letter-spacing: 0.19px;
 }
 
 .fs-sm {
   // 14px
   font-size: fs(sm);
-  letter-spacing: 0.22px;
+  // letter-spacing: 0.22px;
 }
 
 .fs-md {
@@ -73,6 +73,11 @@ body {
 // global font-weight: bold = 600
 @mixin fw-bold($fw: 600) {
   font-weight: $fw;
+}
+
+// TODO: AddNew
+.bold {
+  @include fw-bold;
 }
 
 .cursor {
