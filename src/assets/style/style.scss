@@ -1,10 +1,27 @@
 @use 'sizes';
 // @use 'typography';
 
-body {
-  background-color: azure;
+:root {
+  --calc-bg: 1.8;
+  --c_bg-h: 320;
+  --c_bg-s: calc(100% / var(--calc-bg));
+  --c_bg-l: calc(90% / var(--calc-bg));
+  --c_bg: hsl(var(--c_bg-h), var(--c_bg-s), var(--c_bg-l));
+
+  --calc-bg2: 1.5;
+  --c_bg2-h: calc(320 / 2);
+  --c_bg2-s: calc(100% / var(--calc-bg2));
+  --c_bg2-l: calc(90% / var(--calc-bg2));
+  --c_bg2: hsl(var(--c_bg2-h), var(--c_bg2-s), var(--c_bg2-l));
 }
 
-// h1 {
-//   @include sizes.size(xl);
-// }
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--c_bg);
+  background-color: var(--c_bg2);
+  padding: 4%;
+}
